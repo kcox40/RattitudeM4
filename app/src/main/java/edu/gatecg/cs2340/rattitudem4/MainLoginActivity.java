@@ -38,7 +38,12 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class MainLoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    // Instance Variables
+    Button btnSignIn, btnRegister;
+    LoginDataBaseAdapter loginDataBaseAdapter;
+
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -57,7 +62,7 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
      */
     private UserLoginTask mAuthTask = null;
 
-    // UI references.
+    // UI references
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
@@ -67,9 +72,25 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
+
+        // Create SQLite Database Instance
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter = loginDataBaseAdapter.open();
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+        // Button References
+        btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
+        btnRegister = (Button) findViewById(R.id.register_button);
+
+        // Register Button OnClick
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                registerBtn(v);
+            }
+        });
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -83,13 +104,13 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+//        Button btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
+//        btnSignIn.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                attemptLogin();
+//            }
+//        });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -100,7 +121,7 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
      */
     public void registerBtn(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, RegisterPage.class);
+        Intent intent = new Intent(this, RegisterPageActivity.class);
         startActivity(intent);
     }
 
@@ -202,18 +223,12 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        if (email.equals("user")) {
-            return true;
-        }
-        return false;
+        return email.equals("user");
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        if (password.equals("pass")) {
-            return true;
-        }
-        return false;
+        return password.equals("pass");
     }
 
     /**
@@ -289,7 +304,7 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(MainLogin.this,
+                new ArrayAdapter<>(MainLoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -349,7 +364,7 @@ public class MainLogin extends AppCompatActivity implements LoaderCallbacks<Curs
             showProgress(false);
 
             if (success) {
-                Intent intent = new Intent(MainLogin.this, WelcomePage.class);
+                Intent intent = new Intent(MainLoginActivity.this, WelcomePageActivity.class);
                 startActivity(intent);
                 //finish();
             } else {
