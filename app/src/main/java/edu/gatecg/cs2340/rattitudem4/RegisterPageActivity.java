@@ -88,6 +88,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                     loginDataBaseAdapter.insertEntry(username, password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ",
                             Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });
