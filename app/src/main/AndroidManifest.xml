@@ -24,7 +24,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterPageActivity" />
-        <activity android:name=".WelcomePageActivity"></activity>
+        <activity android:name=".WelcomePageActivity" />
+        <activity
+            android:name=".RatReportListActivity"
+            android:label="@string/title_activity_rat_report"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

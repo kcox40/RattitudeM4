@@ -21,4 +21,8 @@ public class WelcomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainLoginActivity.class);
         startActivity(intent);
     }
+    public void ratReportsButton(View view) {
+        Intent intent = new Intent(this, RatReportListActivity.class);
+        startActivity(intent);
+    }
 }
