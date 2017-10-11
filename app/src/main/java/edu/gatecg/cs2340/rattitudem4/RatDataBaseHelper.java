@@ -10,9 +10,9 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class LoginDataBaseHelper extends SQLiteOpenHelper
+public class RatDataBaseHelper extends SQLiteOpenHelper
 {
-    public LoginDataBaseHelper(Context context, String name, CursorFactory factory, int version)
+    public RatDataBaseHelper(Context context, String name, CursorFactory factory, int version)
     {
         super(context, name, factory, version);
     }
@@ -21,7 +21,7 @@ public class LoginDataBaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase _db)
     {
-        _db.execSQL(LoginDataBaseAdapter.DATABASE_CREATE);
+        _db.execSQL(RatReportDataBaseAdapter.DATABASE_CREATE);
 
     }
     // Called when there is a database version mismatch meaning that the version

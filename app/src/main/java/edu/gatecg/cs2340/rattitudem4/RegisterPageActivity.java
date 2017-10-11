@@ -73,7 +73,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                             "No user type selected", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (loginDataBaseAdapter.getSinlgeEntry(username) != "NOT EXIST") {
+                if (loginDataBaseAdapter.getSingleEntry(username) != "NOT EXIST") {
                     Toast.makeText(getApplicationContext(),
                             "Username Already Taken", Toast.LENGTH_LONG).show();
                     return;

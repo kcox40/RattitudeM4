@@ -24,11 +24,11 @@ public class LoginDataBaseAdapter
     // Context of the application using the database.
     private final Context context;
     // Database open/upgrade helper
-    private DataBaseHelper dbHelper;
+    private LoginDataBaseHelper dbHelper;
     public  LoginDataBaseAdapter(Context _context)
     {
         context = _context;
-        dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        dbHelper = new LoginDataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public  LoginDataBaseAdapter open() throws SQLException
     {
@@ -64,7 +64,7 @@ public class LoginDataBaseAdapter
         // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
-    public String getSinlgeEntry(String userName)
+    public String getSingleEntry(String userName)
     {
         Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
         if(cursor.getCount()<1) // UserName Not Exist

@@ -238,7 +238,7 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
     }
 
     private boolean authenticate(String userName, String password) {
-        String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);
+        String storedPassword = loginDataBaseAdapter.getSingleEntry(userName);
 
         if(password.equals(storedPassword))
         {
@@ -367,7 +367,7 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
                 return false;
             }
 
-            String storedPassword = loginDataBaseAdapter.getSinlgeEntry(mEmail);
+            String storedPassword = loginDataBaseAdapter.getSingleEntry(mEmail);
 
 //            for (String credential : DUMMY_CREDENTIALS) {
 //                String[] pieces = credential.split(":");
