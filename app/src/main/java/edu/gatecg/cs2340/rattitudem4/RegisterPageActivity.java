@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class RegisterPageActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class RegisterPageActivity extends AppCompatActivity {
     EditText firstNameEntry,lastNameEntry,emailEntry,usernameEntry,passwordEntry,confirmPasswordEntry;
     Button btnCreateAccount,btnBack;
     LoginDataBaseAdapter loginDataBaseAdapter;
+    RadioGroup userType;
 
 
 
@@ -38,6 +40,8 @@ public class RegisterPageActivity extends AppCompatActivity {
         usernameEntry = (EditText) findViewById(R.id.usernameEntry);
         passwordEntry = (EditText) findViewById(R.id.passwordEntry);
         confirmPasswordEntry = (EditText) findViewById(R.id.confirmPasswordEntry);
+        userType = (RadioGroup) findViewById(R.id.userTypeRadioGroup);
+
 
         btnBack = (Button) findViewById(R.id.backButton);
 //        btnBack.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +67,17 @@ public class RegisterPageActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Field Empty", Toast.LENGTH_LONG).show();
                     return;
                 }
+
+                if (userType.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(getApplicationContext(),
+                            "No user type selected", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (loginDataBaseAdapter.getSinlgeEntry(username) != "NOT EXIST") {
+                    Toast.makeText(getApplicationContext(),
+                            "Username Already Taken", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 // Check if passwords match:
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(getApplicationContext(),
@@ -73,14 +88,16 @@ public class RegisterPageActivity extends AppCompatActivity {
                     loginDataBaseAdapter.insertEntry(username, password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ",
                             Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });
     }
     public void loginBackBtn(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, MainLoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MainLoginActivity.class);
+//        startActivity(intent);
+        finish();
     }
 
 }

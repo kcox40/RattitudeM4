@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,13 +105,13 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
             }
         });
 
-//        Button btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
-//        btnSignIn.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                attemptLogin();
-//            }
-//        });
+        Button btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
+        btnSignIn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptLogin();
+            }
+        });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -168,6 +169,9 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
         }
     }
 
+//    public void signIn(View v) {
+//        final Dial
+//    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -223,12 +227,29 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.equals("user");
+//        return email.equals("user");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.equals("pass");
+//        return password.equals("pass");
+        return true;
+    }
+
+    private boolean authenticate(String userName, String password) {
+        String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);
+
+        if(password.equals(storedPassword))
+        {
+            Toast.makeText(MainLoginActivity.this, "Congrats: Login Successfull", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        else
+        {
+            Toast.makeText(MainLoginActivity.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
     /**
@@ -346,16 +367,19 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
+            String storedPassword = loginDataBaseAdapter.getSinlgeEntry(mEmail);
+
+//            for (String credential : DUMMY_CREDENTIALS) {
+//                String[] pieces = credential.split(":");
+//                if (pieces[0].equals(mEmail)) {
+//                    // Account exists, return true if the password matches.
+//                    return pieces[1].equals(mPassword);
+//                }
+//            }
+            return mPassword.equals(storedPassword);
 
             // TODO: register the new account here.
-            return true;
+//            return true;
         }
 
         @Override
