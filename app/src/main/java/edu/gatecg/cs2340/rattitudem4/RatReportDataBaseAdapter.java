@@ -18,6 +18,9 @@ public class RatReportDataBaseAdapter {
     static final int DATABASE_VERSION = 1;
     public static final int NAME_COLUMN = 1;
     public ArrayList<String[]> ratSightingList;
+
+    private CSVReader csvRatData;
+
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table "+"RATS"+
@@ -32,6 +35,12 @@ public class RatReportDataBaseAdapter {
     public RatReportDataBaseAdapter(Context _context) {
         context = _context;
         dbHelper = new RatDataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        csvRatData = new CSVReader();
+        ArrayList<String[]> existingRatData = csvRatData.getRatData();
+
+        for (String[] line: existingRatData) {
+            insertEntry(line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7]);
+        }
     }
 
     public RatReportDataBaseAdapter open() throws SQLException {
