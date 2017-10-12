@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class RatReportListActivity extends AppCompatActivity {
     ListView list;
     String[] s;
+    RatReportDataBaseAdapter ratReportDataBaseAdapter;
 
 
 //    String[] s = new String[] {"Hello", "Testing", "Maybe", "This", "is", "working"};
@@ -21,11 +22,12 @@ public class RatReportListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rat_report);
 
         // Create SQLite Instance
-        RatReportDataBaseAdapter ratReportDataBaseAdapter = new RatReportDataBaseAdapter(this);
+        ratReportDataBaseAdapter = new RatReportDataBaseAdapter(this);
         ratReportDataBaseAdapter = ratReportDataBaseAdapter.open();
 
+        ratReportDataBaseAdapter.insertEntry("10/20/2017","Residential","30318","337735 Georgia Tech Station","Atlanta","Midtown","38","38");
         s = (ratReportDataBaseAdapter.ratInfoStringArr());
-//        String[][] sArray = s.toArray(new String[100][9]);
+
 
         list = (ListView) findViewById(R.id.rat_report_list);
         ArrayAdapter ad = new ArrayAdapter(RatReportListActivity.this, android.R.layout.simple_expandable_list_item_1, s);

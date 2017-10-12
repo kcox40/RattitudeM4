@@ -20,8 +20,8 @@ public class RatReportDataBaseAdapter {
     public ArrayList<String[]> ratSightingList;
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
-    static final String DATABASE_CREATE = "create table " + "RATS" +
-            "( " + "ID" + " integer primary key autoincrement," + "DATE date,LOCATION text,ZIPCODE"
+    static final String DATABASE_CREATE = "create table "+"RATS"+
+            "( "+"ID" + " integer primary key autoincrement," + "DATE date,LOCATION text,ZIPCODE"
             + " text,ADDRESS text,CITY text,BOROUGH text,LATITUDE text,LONGITUDE text); ";
     // Variable to hold the database instance
     public SQLiteDatabase db;
@@ -29,7 +29,6 @@ public class RatReportDataBaseAdapter {
     private final Context context;
     // Database open/upgrade helper
     private RatDataBaseHelper dbHelper;
-
     public RatReportDataBaseAdapter(Context _context) {
         context = _context;
         dbHelper = new RatDataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
