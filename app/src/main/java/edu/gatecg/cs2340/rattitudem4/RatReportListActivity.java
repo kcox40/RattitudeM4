@@ -24,8 +24,9 @@ public class RatReportListActivity extends AppCompatActivity {
         // Create SQLite Instance
         ratReportDataBaseAdapter = new RatReportDataBaseAdapter(this);
         ratReportDataBaseAdapter = ratReportDataBaseAdapter.open();
+        ratReportDataBaseAdapter.buildRatDataBaseFromFile();
 
-        ratReportDataBaseAdapter.insertEntry("10/20/2017","Residential","30318","337735 Georgia Tech Station","Atlanta","Midtown","38","38");
+//        ratReportDataBaseAdapter.insertEntry("10/20/2017","Residential","30318","337735 Georgia Tech Station","Atlanta","Midtown","38","38");
         s = (ratReportDataBaseAdapter.ratInfoStringArr());
 
 

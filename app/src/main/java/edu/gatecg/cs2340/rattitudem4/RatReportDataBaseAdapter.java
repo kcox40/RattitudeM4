@@ -1,7 +1,7 @@
 package edu.gatecg.cs2340.rattitudem4;
 
 /**
- * Created by kcox8 on 9/28/2017.
+ * Created by daltontouch on 10/13/2017.
  */
 
 import android.content.ContentValues;
@@ -9,10 +9,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 
-public class RatReportDataBaseAdapter {
+public class RatReportDataBaseAdapter
+{
     static final int NUMBER_OF_ENTRIES = 100;
     static final String DATABASE_NAME = "rats.db";
     static final int DATABASE_VERSION = 1;
@@ -24,7 +24,7 @@ public class RatReportDataBaseAdapter {
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table "+"RATS"+
-            "( "+"ID" + " integer primary key autoincrement," + "DATE date,LOCATION text,ZIPCODE"
+            "( "+"ID" + " integer primary key autoincrement," + "DATE text,LOCATION text,ZIPCODE"
             + " text,ADDRESS text,CITY text,BOROUGH text,LATITUDE text,LONGITUDE text); ";
     // Variable to hold the database instance
     public SQLiteDatabase db;
@@ -32,22 +32,22 @@ public class RatReportDataBaseAdapter {
     private final Context context;
     // Database open/upgrade helper
     private RatDataBaseHelper dbHelper;
-    public RatReportDataBaseAdapter(Context _context) {
+    public RatReportDataBaseAdapter(Context _context)
+    {
         context = _context;
         dbHelper = new RatDataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-        csvRatData = new CSVReader();
-        ArrayList<String[]> existingRatData = csvRatData.getRatData();
-
-        for (String[] line: existingRatData) {
-            insertEntry(line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7]);
-        }
+        // If rats.db empty, run buildRatDataBaseFromFile()
+//        if (tableEmpty()) {
+//            buildRatDataBaseFromFile();
+//        }
+        buildRatDataBaseFromFile();
     }
 
-    public RatReportDataBaseAdapter open() throws SQLException {
+    public RatReportDataBaseAdapter open() throws SQLException
+    {
         db = dbHelper.getWritableDatabase();
         return this;
     }
-
     public void close() {
         db.close();
     }
@@ -74,6 +74,7 @@ public class RatReportDataBaseAdapter {
         ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
 
+    /**
 // What do I use rather than Username??
 
     public int deleteEntry(String ID) {
@@ -83,6 +84,7 @@ public class RatReportDataBaseAdapter {
         // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
+     **/
 
     public String[] getSingleEntry(String ID) {
         Cursor cursor = db.query("RATS", null, " ID=?", new String[]{ID}, null, null, null);
@@ -109,23 +111,33 @@ public class RatReportDataBaseAdapter {
     }
 
     public String[] ratInfoStringArr() {
+//        System.out.println(tableEmpty());
+        if (tableEmpty()) {
+            buildRatDataBaseFromFile();
+        }
         ArrayList<String> infoList = new ArrayList<>();
         String infoLine;
         Cursor cursor = db.query("RATS", new String[]{"DATE", "LOCATION", "BOROUGH"}, null, null, null, null, "DATE DESC");
-        infoLine = cursor.getString(cursor.getColumnIndex("DATE")) + "\t"
-                + cursor.getString(cursor.getColumnIndex("LOCATION")) + "\t"
-                + cursor.getString(cursor.getColumnIndex("BOROUGH"));
-        infoList.add(infoLine);
-        while (cursor.moveToNext()) {
-            infoLine = cursor.getString(cursor.getColumnIndex("DATE")) + "\t"
-                    + cursor.getString(cursor.getColumnIndex("LOCATION")) + "\t"
+        if (cursor.moveToFirst()) {
+            infoLine = cursor.getString(cursor.getColumnIndex("DATE")) + "   "
+                    + cursor.getString(cursor.getColumnIndex("LOCATION")) + "   "
                     + cursor.getString(cursor.getColumnIndex("BOROUGH"));
             infoList.add(infoLine);
+            while (!cursor.isAfterLast()) {
+                infoLine = cursor.getString(cursor.getColumnIndex("DATE")) + "   "
+                        + cursor.getString(cursor.getColumnIndex("LOCATION")) + "   "
+                        + cursor.getString(cursor.getColumnIndex("BOROUGH"));
+                infoList.add(infoLine);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            return infoList.toArray(new String[infoList.size()]);
+        } else {
+            throw new java.util.NoSuchElementException("Database appears to be empty\n");
         }
-        cursor.close();
-        return infoList.toArray(new String[infoList.size()]);
     }
 
+/**
     public void updateEntry(String userName, String password) {
         // Define the updated row content.
         ContentValues updatedValues = new ContentValues();
@@ -136,6 +148,7 @@ public class RatReportDataBaseAdapter {
         String where = "USERNAME = ?";
         db.update("LOGIN", updatedValues, where, new String[]{userName});
     }
+ **/
 
 //    // https://stackoverflow.com/questions/10111166/get-all-rows-from-sqlite
 //    public ArrayList<String[]> listRatSightingData() {
@@ -157,6 +170,39 @@ public class RatReportDataBaseAdapter {
             ratSightingList.add(getSingleEntry(searchIndex));
         }
         return ratSightingList;
+    }
+
+    /**
+     * We've got to figure out how to call this method only once, the first time the app is opened
+     * or if rats.db is empty.
+     */
+    public void buildRatDataBaseFromFile() {
+//        db = open();
+        csvRatData = new CSVReader();
+        ArrayList<String[]> ratData = csvRatData.csvToArray();
+//        ArrayList<String[]> existingRatData = csvRatData.getRatData();
+        System.out.println(ratData);
+
+        for (String[] line: ratData) {
+            insertEntry(line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7]);
+        }
+    }
+
+    /**
+     * Method to check if the RATS table is empty
+     * @return true if table is empty
+     */
+    public boolean tableEmpty() {
+        boolean isEmpty = true;
+        String query = "select exists(select 1 from " + "RATS" + ");";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        if (count == 1) {
+            isEmpty = false;
+        }
+        cursor.close();
+        return isEmpty;
     }
 
 }

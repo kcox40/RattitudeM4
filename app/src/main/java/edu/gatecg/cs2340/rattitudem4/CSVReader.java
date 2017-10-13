@@ -5,60 +5,74 @@ package edu.gatecg.cs2340.rattitudem4;
  */
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
+
 public class CSVReader {
-    //public static void main(String[] args) {
 
-    private ArrayList ratData;
+    private ArrayList<String[]> ratData;
+    //TODO: Add general filepath
+    static final String csvFile = "/Users/dalton/Dropbox/RattitudeM4/app/src/main/java/edu/gatecg/cs2340/rattitudem4/Rat_Sightings.csv";
+    String line = "";
+    BufferedReader br = null;
 
-    public ArrayList getRatData() {
-        return ratData;
+//    public static void main(String[] args) {
+//        CSVReader csvReader = new CSVReader();
+//        csvReader.csvToArray();
+//        for (int i = 0; i < 100; i++) {
+//            System.out.println(((String[]) csvReader.getRatData().get(i))[0]);
+//        }
+//    }
+
+    public CSVReader() {
+        ratData = new ArrayList<String[]>();
     }
 
-    public void csvToArray() {
-        //file path for my computer
-        //String csvFile = "/Users/abbiewilliams/Documents/CS2340/RattitudeM4/app/Rat_Sightings.csv";
-        //general file path
-        String csvFile = "/RattitudeM4/app/Rat_Sightings.csv";
-        BufferedReader br = null;
-        String line = "";
+    public ArrayList<String[]> csvToArray() {
+
         String cvsSplitBy = ",";
 
         try {
-
-            br = new BufferedReader(new FileReader(csvFile));
+            FileReader file = new FileReader(csvFile);
+            br = new BufferedReader(file);
             line = br.readLine();
-            while ((line = br.readLine()) != null) {
+            String[] selectData;
+//            while ((line = br.readLine()) != null) {
+            while (line != null) {
 
                 // use comma as separator
                 String[] lineData = line.split(cvsSplitBy);
 
-                String date = lineData[1];
-                String location = lineData[7];
-                String zip = lineData[8];
-                String address = lineData[9];
-                String city = lineData[16];
-                String borough = lineData[23];
-                String latitude = lineData[49];
-                String longitude = lineData[50];
+//                String date = lineData[1];
+//                String location = lineData[7];
+//                String zip = lineData[8];
+//                String address = lineData[9];
+//                String city = lineData[16];
+//                String borough = lineData[23];
+//                String latitude = lineData[49];
+//                String longitude = lineData[50];
 
-                String[] selectData = new String[8];
-                selectData[0] = date;
-                selectData[1] = location;
-                selectData[2] = zip;
-                selectData[3] = address;
-                selectData[4] = city;
-                selectData[5] = borough;
-                selectData[6] = latitude;
-                selectData[7] = longitude;
+//                String[] selectData = new String[8];
+                selectData = copyToNewArray(lineData);
+//                selectData[0] = date;
+//                selectData[1] = location;
+//                selectData[2] = zip;
+//                selectData[3] = address;
+//                selectData[4] = city;
+//                selectData[5] = borough;
+//                selectData[6] = latitude;
+//                selectData[7] = longitude;
 
                 ratData.add(selectData);
-
+//                System.out.println(selectData);
+                line = br.readLine();
             }
+            return ratData;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -73,6 +87,32 @@ public class CSVReader {
                 }
             }
         }
-
+        return ratData;
     }
+
+    public ArrayList getRatData() {
+        return ratData;
+    }
+
+    /**
+     * Helper method to catch ArrayIndexOutOfBoundsException raised when a field in the CSV is empty
+     * @param lineData array from line of csv data
+     * @return Array to add to ratData
+     */
+    public String[] copyToNewArray(String[] lineData) {
+        String[] outStringArr = new String[8];
+        Integer[] relevantIndices = new Integer[]{1,7,8,9,16,23,49,50};
+        int i = 0;
+        for (int oldIndex : relevantIndices) {
+            try {
+                outStringArr[i] = lineData[oldIndex];
+            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                outStringArr[i] = "";
+            }
+            i++;
+        }
+        return outStringArr;
+    }
+
+
 }

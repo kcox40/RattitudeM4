@@ -390,7 +390,8 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
             if (success) {
                 Intent intent = new Intent(MainLoginActivity.this, WelcomePageActivity.class);
                 startActivity(intent);
-                //finish();
+                loginDataBaseAdapter.close();
+                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
