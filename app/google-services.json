@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "790163566739",
+    "firebase_url": "https://rattitude-b8036.firebaseio.com",
+    "project_id": "rattitude-b8036",
+    "storage_bucket": "rattitude-b8036.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790163566739:android:1446324f8bb4062b",
+        "android_client_info": {
+          "package_name": "edu.gatecg.cs2340.rattitudem4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790163566739-33upq05ldp1kakr6haf9gmnimjp6otgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.gatecg.cs2340.rattitudem4",
+            "certificate_hash": "d7ddc0656e7c2edc49b6b2841ec7f1d25723f843"
+          }
+        },
+        {
+          "client_id": "790163566739-d7i4aebcao0t32ijlaaf94uu7lss93on.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0P6EpcFvTEDgA4x6k2OkFdxUbFTErZhk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790163566739-d7i4aebcao0t32ijlaaf94uu7lss93on.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

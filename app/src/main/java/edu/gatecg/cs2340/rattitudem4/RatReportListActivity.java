@@ -14,9 +14,11 @@ public class RatReportListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_report);
-        list = (ListView) findViewById(R.id.rat_report_list);
-        ArrayAdapter ad = new ArrayAdapter(RatReportListActivity.this, android.R.layout.simple_expandable_list_item_1, s);
-        list.setAdapter(ad);
+//        list = (ListView) findViewById(R.id.rat_report_list);
+//        ArrayAdapter ad = new ArrayAdapter(RatReportListActivity.this, android.R.layout.simple_expandable_list_item_1, s);
+//        list.setAdapter(ad);
+        RatReportManager dbManager = new RatReportManager();
+        dbManager.printDatabase();
         //TODO We need to get the rat reports from the database
         // and we need to extract the Unique ID for each rat report, the Burrough,
         // and the date.
