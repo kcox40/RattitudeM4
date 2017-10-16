@@ -12,12 +12,12 @@ public class RatReport {
     private String address;
     private String city;
     private String borough;
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
     public RatReport() {}
     public RatReport(int id, String date, String locationType,
                      int incidentZip, String address, String city,
-                     String borough, String latitude, String longitude) {
+                     String borough, Double latitude, Double longitude) {
         this.id = id;
         this.date = date;
         this.locationType = locationType;
@@ -85,20 +85,34 @@ public class RatReport {
         this.borough = borough;
     }
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
+    @Override
+    public String toString() {
+        return "RatReport{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", locationType='" + locationType + '\'' +
+                ", incidentZip=" + incidentZip +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", borough='" + borough + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                '}';
+    }
 }
