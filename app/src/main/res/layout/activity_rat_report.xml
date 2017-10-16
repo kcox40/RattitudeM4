@@ -25,8 +25,8 @@
             android:id="@+id/ratreportBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="ratReportBackButton"
-            android:text="Back To Sightings"
+            android:onClick="ratReportListBackButton"
+            android:text="Back To Viewing Options"
             tools:layout_editor_absoluteX="113dp"
             tools:layout_editor_absoluteY="503dp" />
     </LinearLayout>

@@ -22,7 +22,7 @@ public class WelcomePageActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void ratReportsButton(View view) {
-        Intent intent = new Intent(this, RatReportListActivity.class);
+        Intent intent = new Intent(this, OptionsActivity.class);
         startActivity(intent);
     }
 }
