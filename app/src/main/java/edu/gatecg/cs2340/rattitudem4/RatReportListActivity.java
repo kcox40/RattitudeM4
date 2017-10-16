@@ -1,10 +1,13 @@
 package edu.gatecg.cs2340.rattitudem4;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView;
 
 import com.google.android.gms.tasks.Tasks;
 
@@ -27,7 +30,17 @@ public class RatReportListActivity extends AppCompatActivity {
         // and the date.
         //Once an item is clicked it will open RatReportDetailActivity
         //that will show all details for that rat report.
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long id) {
+                String selItem = (String) adapter.getItemAtPosition(position);
+                Log.d("check on click", selItem.toString());
+                Intent intent = new Intent(RatReportListActivity.this, RatReportDetail.class);
+                intent.putExtra("RatReport", selItem);
+                startActivity(intent);
+            }
+        });
     }
+
 
 
     public void ratReportListBackButton(View view) {
