@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-/**
- * @author team 57
- * @version 1
- */
+import com.google.android.gms.tasks.Tasks;
+
 public class RatReportListActivity extends AppCompatActivity {
     ListView list;
+    private RatReportManager dbManager;
     String[] s = new String[] {"Hello", "Testing", "Maybe", "This", "is"
             , "working", "Checking", "Out", "The", "Scroll", "Bar", "?"};
     @Override
@@ -19,7 +18,9 @@ public class RatReportListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_report);
         list = (ListView) findViewById(R.id.rat_report_list);
-        ArrayAdapter ad = new ArrayAdapter(RatReportListActivity.this, android.R.layout.simple_expandable_list_item_1, s);
+        ArrayAdapter ad = new ArrayAdapter(RatReportListActivity.this,
+                android.R.layout.simple_expandable_list_item_1,
+                OptionsActivity.dbManager.getShortStringList().toArray());
         list.setAdapter(ad);
         //TODO We need to get the rat reports from the database
         // and we need to extract the Unique ID for each rat report, the Burrough,
@@ -27,11 +28,9 @@ public class RatReportListActivity extends AppCompatActivity {
         //Once an item is clicked it will open RatReportDetailActivity
         //that will show all details for that rat report.
     }
-    /**
-     * back putton from the rat report page
-     * @param view looking at the backbutton for the rat report view
-     */
-    public void ratReportBackButton(View view) {
+
+
+    public void ratReportListBackButton(View view) {
         finish();
     }
 }
