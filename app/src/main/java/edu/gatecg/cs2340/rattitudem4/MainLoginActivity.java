@@ -38,6 +38,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
+ * @author team 57
+ * @version 1
  */
 public class MainLoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
@@ -119,13 +121,16 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
 
     /**
      * Called when someone hits the "register now" button
+     * @param view displays the register button
      */
     public void registerBtn(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, RegisterPageActivity.class);
         startActivity(intent);
     }
-
+    /**
+    * @return returns population
+    */
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -133,7 +138,7 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
 
         getLoaderManager().initLoader(0, null, this);
     }
-
+   
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
