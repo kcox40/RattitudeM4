@@ -29,6 +29,15 @@
             android:name=".RatReportListActivity"
             android:label="@string/title_activity_rat_report"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReportSighting"
+            android:label="@string/title_activity_report_sighting"
+            android:parentActivityName=".WelcomePageActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gatecg.cs2340.rattitudem4.WelcomePageActivity" />
+        </activity>
     </application>
 
 </manifest>

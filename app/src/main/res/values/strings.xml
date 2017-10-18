@@ -20,4 +20,8 @@
     <string name="empty_password">The Password field must not be empty</string>
     <string name="taken_username">That Username is already taken</string>
     <string name="title_activity_rat_report">RatReport</string>
+    <string name="title_activity_report_sighting">ReportSighting</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
