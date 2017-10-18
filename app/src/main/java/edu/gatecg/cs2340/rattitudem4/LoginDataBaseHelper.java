@@ -10,9 +10,24 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class LoginDataBaseHelper extends SQLiteOpenHelper
+/**
+ * This is for using the data base in SQLite
+ * @author team 57
+ * @version 1
+ */
+
+
+public class DataBaseHelper extends SQLiteOpenHelper
 {
-    public LoginDataBaseHelper(Context context, String name, CursorFactory factory, int version)
+    /**
+     * The constructor, takes context, name, factory, version of the data entries
+     * name
+     * @param context specific resources and classes for our database
+     * @param name of the data entry
+     * @param factory data results in a list
+     * @param version which version the is data from
+     */
+    public DataBaseHelper(Context context, String name,CursorFactory factory, int version)
     {
         super(context, name, factory, version);
     }
