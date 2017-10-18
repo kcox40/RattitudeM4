@@ -7,33 +7,38 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by Russell on 10/13/2017.
+ * Created by Carlos Priddy on 10/13/2017.
  */
 
 public class RatReportManager {
-    //private ArrayList<Map<String, String>> ratReports;
     private static List<RatReport> ratReports;
     private static DatabaseReference ratDBRef;
     private static Query ratQuery;
     public RatReportManager() {
-        //ratReports = new ArrayList<Map<String, String>>();
+        //Get Database Reference
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         ratDBRef = database.getReference();
-        ratReports = new ArrayList<RatReport>();
-        ratQuery = ratDBRef.orderByKey().limitToLast(50);
-        queryInit();
-       // databaseInit();
-    }
 
+        //Create internal database
+        ratReports = new ArrayList<RatReport>();
+
+        //Set Query object
+        ratQuery = ratDBRef.orderByKey().limitToLast(50);
+
+        //Initialize Query by attaching ValueEventListener
+        queryInit();
+    }
+    /*
+        Populates the Rat report database by attaching a ValueEventListener to
+        the query
+     */
     private void queryInit() {
         ratQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,27 +72,11 @@ public class RatReportManager {
             }
         });
     }
-//    private void databaseInit() {
-//        ratDBRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot databaseSnapshot) {
-//                for (DataSnapshot reportSnapshot: databaseSnapshot.getChildren()) {
-//                    Log.d("PRINTINGDB", (String) reportSnapshot.child("City").getValue());
-//                    ratReports.add((String) reportSnapshot.child("City").getValue());
-//                }
-////                GenericTypeIndicator<ArrayList<Map<String, String>>> typeIndicator = new GenericTypeIndicator<ArrayList<Map<String, String>>>() {};
-////                ratReports = (List<Object>) dataSnapshot.getValue();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-////                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
-////                Toast.makeText(mContext, "Failed to load comments.",
-////                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
+    /*
+        Prints full string representations of all objects in the Query
+        prints to Log.d for debug purposes
+     */
     public void printDatabase() {
         Log.d("Array Size", String.valueOf(ratReports.size()));
         for (RatReport report : ratReports) {
@@ -95,10 +84,18 @@ public class RatReportManager {
         }
     }
 
+    /*
+        Returns a list of Rat Reports
+        @return A list of Rat Reports
+     */
     public List<RatReport> getList() {
         return ratReports;
     }
 
+    /*
+        Returns full string representations for all rat reports in Query
+        @return List of String representations for objects in internal database
+     */
     public List<String> getStringList() {
         List<String> stringList = new ArrayList<String>();
         for (RatReport report : ratReports) {
@@ -107,6 +104,10 @@ public class RatReportManager {
         return stringList;
     }
 
+    /*
+        Returns a short string representation of objects in internal DB
+        @return short string representation
+     */
     public List<String> getShortStringList() {
         List<String> shortList = new ArrayList<>();
         for (RatReport report : ratReports) {

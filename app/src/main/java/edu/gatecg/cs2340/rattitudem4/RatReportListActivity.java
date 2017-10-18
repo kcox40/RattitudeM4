@@ -26,11 +26,6 @@ public class RatReportListActivity extends AppCompatActivity {
                 android.R.layout.simple_expandable_list_item_1,
                 OptionsActivity.dbManager.getShortStringList().toArray());
         list.setAdapter(ad);
-        //TODO We need to get the rat reports from the database
-        // and we need to extract the Unique ID for each rat report, the Burrough,
-        // and the date.
-        //Once an item is clicked it will open RatReportDetailActivity
-        //that will show all details for that rat report.
     }
     
     /** 
