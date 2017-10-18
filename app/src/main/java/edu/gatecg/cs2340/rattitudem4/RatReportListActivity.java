@@ -7,6 +7,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.gms.tasks.Tasks;
+/** 
+ * @author team 57 
+ * @version 1 
+ */ 
 
 public class RatReportListActivity extends AppCompatActivity {
     ListView list;
@@ -28,7 +32,11 @@ public class RatReportListActivity extends AppCompatActivity {
         //Once an item is clicked it will open RatReportDetailActivity
         //that will show all details for that rat report.
     }
-
+    
+    /** 
+     * back putton from the rat report page 
+     * @param view looking at the backbutton for the rat report view 
+     */ 
 
     public void ratReportListBackButton(View view) {
         finish();
