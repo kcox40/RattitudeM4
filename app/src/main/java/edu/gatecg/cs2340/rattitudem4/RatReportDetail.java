@@ -33,17 +33,21 @@ public class RatReportDetail extends AppCompatActivity {
         TextView latitudeView = (TextView) findViewById(R.id.latitude);
         TextView longitudeView = (TextView) findViewById(R.id.longitude);
 
-       idView.setText(Integer.toString(selectedRatReport.getId()));
-        dateView.setText(selectedRatReport.getDate());
-        locationView.setText(selectedRatReport.getLocationType());
-        zipView.setText(Integer.toString(selectedRatReport.getIncidentZip()));
-        addressView.setText(selectedRatReport.getAddress());
-        cityView.setText(selectedRatReport.getCity());
-        boroughView.setText(selectedRatReport.getBorough());
-        latitudeView.setText(Double.toString(selectedRatReport.getLatitude()));
-        longitudeView.setText(Double.toString(selectedRatReport.getLongitude()));
+       idView.setText("ID: " + Integer.toString(selectedRatReport.getId()));
+        dateView.setText("Date: " + selectedRatReport.getDate());
+        locationView.setText("Location Type: " + selectedRatReport.getLocationType());
+        zipView.setText("Incident Zip: " + Integer.toString(selectedRatReport.getIncidentZip()));
+        addressView.setText("Address: " + selectedRatReport.getAddress());
+        cityView.setText("City: " + selectedRatReport.getCity());
+        boroughView.setText("Borough: " + selectedRatReport.getBorough());
+        latitudeView.setText("Lattitude: " + Double.toString(selectedRatReport.getLatitude()));
+        longitudeView.setText("Longitude: " + Double.toString(selectedRatReport.getLongitude()));
     }
 
+    /**
+     * Closes view to return back to OptionsActivity in the stack
+     * @param view the current view (RatReportDetail)
+     */
     public void backBtn(View view) {
         finish();
     }
