@@ -30,7 +30,7 @@ public class RatReportManager {
         ratReports = new ArrayList<RatReport>();
 
         //Set Query object
-        ratQuery = ratDBRef.orderByKey().limitToLast(50);
+        ratQuery = ratDBRef.orderByKey().limitToLast(200);
 
         //Initialize Query by attaching ValueEventListener
         queryInit();
@@ -112,10 +112,10 @@ public class RatReportManager {
         List<String> shortList = new ArrayList<>();
         for (RatReport report : ratReports) {
             String line = new String();
+            line = line + report.getDate() + report.getBorough() +" " +  report.getId();
             shortList.add(line);
         }
         return shortList;
     }
 }
 
-            line = line + report.getDate() + report.getBorough() +" " +  report.getId();
