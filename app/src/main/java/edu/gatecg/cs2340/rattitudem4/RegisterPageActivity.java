@@ -14,6 +14,12 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+/** 
+ * @author Created by daltontouch on 10/01/2017 
+ * @version v1.0 
+ */ 
+
+
 public class RegisterPageActivity extends AppCompatActivity {
 
     // Instantiate widgets for the register page.
@@ -93,6 +99,10 @@ public class RegisterPageActivity extends AppCompatActivity {
             }
         });
     }
+    /** 
+     * login 
+     * @param view is view of backbutton for login 
+     */ 
     public void loginBackBtn(View view) {
         // Do something in response to button
 //        Intent intent = new Intent(this, MainLoginActivity.class);

@@ -10,6 +10,10 @@ import android.widget.ListView;
 import android.widget.AdapterView;
 
 import com.google.android.gms.tasks.Tasks;
+/** 
+ * @author team 57 
+ * @version 1 
+ */ 
 
 public class RatReportListActivity extends AppCompatActivity {
     ListView list;
@@ -40,8 +44,11 @@ public class RatReportListActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    
+    /** 
+     * back putton from the rat report page 
+     * @param view looking at the backbutton for the rat report view 
+     */ 
 
     public void ratReportListBackButton(View view) {
         finish();
