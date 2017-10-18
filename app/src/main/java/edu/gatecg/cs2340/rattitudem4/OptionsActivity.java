@@ -19,11 +19,18 @@ public class OptionsActivity extends AppCompatActivity {
             loaded = true;
         }
     }
+    /*
+        Directs the app to the RatReportListActivity when pushed.
+        @param view This view
+     */
     public void ratReportsListButton(View view) {
         Intent intent = new Intent(this, RatReportListActivity.class);
         startActivity(intent);
     }
 
+    /*
+        finishes this activity and returns to the previous one.
+     */
     public void optionsBackToWelcomeButton(View view) {
         finish();
     }
