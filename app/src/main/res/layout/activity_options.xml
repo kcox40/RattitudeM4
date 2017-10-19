@@ -32,6 +32,7 @@
             android:text="Return To Welcome Page"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="71dp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

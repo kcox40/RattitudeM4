@@ -7,6 +7,8 @@ package edu.gatecg.cs2340.rattitudem4;
  */
 
 public class RatReport {
+    private static int newReports;
+    private static final int lastItemPointer = 37018532;
     private int id;
     private String date;
     private String locationType;
@@ -37,6 +39,21 @@ public class RatReport {
                      int incidentZip, String address, String city,
                      String borough, Double latitude, Double longitude) {
         this.id = id;
+        this.date = date;
+        this.locationType = locationType;
+        this.incidentZip = incidentZip;
+        this.address = address;
+        this.city = city;
+        this.borough = borough;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    public RatReport(String date, String locationType,
+                     int incidentZip, String address, String city,
+                     String borough, Double latitude, Double longitude) {
+
+        this.id = OptionsActivity.dbManager.addNewRatReport(date, locationType, incidentZip,
+                address, city, borough, latitude, longitude);
         this.date = date;
         this.locationType = locationType;
         this.incidentZip = incidentZip;
@@ -187,5 +204,12 @@ public class RatReport {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 '}';
+    }
+    /*
+        Returns the number of new rat reports
+        @return number of new reports
+     */
+    public int getNewReports() {
+        return newReports;
     }
 }

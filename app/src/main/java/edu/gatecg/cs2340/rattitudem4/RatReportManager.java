@@ -11,7 +11,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Carlos Priddy on 10/13/2017.
@@ -21,16 +23,21 @@ public class RatReportManager {
     private static List<RatReport> ratReports;
     private static DatabaseReference ratDBRef;
     private static Query ratQuery;
+    private static Query lastItem;
+    private int lastIndex;
+    private static RatReport lastReport;
+    private static FirebaseDatabase database;
     public RatReportManager() {
         //Get Database Reference
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         ratDBRef = database.getReference();
 
         //Create internal database
         ratReports = new ArrayList<RatReport>();
 
-        //Set Query object
-        ratQuery = ratDBRef.orderByKey().limitToLast(200);
+        //Set Query objects
+        ratQuery = ratDBRef.orderByKey().limitToLast(20);
+        lastItem = ratDBRef.orderByKey().limitToLast(1);
 
         //Initialize Query by attaching ValueEventListener
         queryInit();
@@ -64,6 +71,39 @@ public class RatReportManager {
 
                     ratReports.add(report);
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        lastItem.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot reportSnapshot: dataSnapshot.getChildren()) {
+                    RatReport report = new RatReport();
+                    report.setCity((String) reportSnapshot.child("City").getValue());
+                    report.setAddress((String) reportSnapshot.child("Incident Address").getValue());
+                    report.setId(Integer.parseInt((String) reportSnapshot.child("Unique Key").getValue()));
+                    report.setBorough((String) reportSnapshot.child("Borough").getValue());
+                    report.setDate((String) reportSnapshot.child("Created Date").getValue());
+                    if (!((String) reportSnapshot.child("Incident Zip").getValue()).equals("")) {
+                        report.setIncidentZip(Integer.parseInt((String) reportSnapshot.child("Incident Zip").getValue()));
+                    }
+                    report.setLocationType((String) reportSnapshot.child("Address Type").getValue());
+                    if (!((String) reportSnapshot.child("Latitude").getValue()).equals("")) {
+                        report.setLatitude(Double.parseDouble((String) reportSnapshot.child("Latitude").getValue()));
+                    }
+
+                    if (!((String) reportSnapshot.child("Longitude").getValue()).equals("")) {
+                        report.setLongitude(Double.parseDouble((String) reportSnapshot.child("Longitude").getValue()));
+                    }
+
+                    lastIndex = (Integer.parseInt(reportSnapshot.getKey()));
+                    lastReport = report;
+                }
+                Log.d("Last Item", lastReport.toString() + " " + lastIndex);
             }
 
             @Override
@@ -116,6 +156,29 @@ public class RatReportManager {
             shortList.add(line);
         }
         return shortList;
+    }
+
+    public int addNewRatReport(String date, String locationType,
+                               int incidentZip, String address, String city,
+                               String borough, Double latitude, Double longitude) {
+
+        ratDBRef.child(String.valueOf(lastIndex + 1)).setValue(null);
+        Map<String, Object> updates = new HashMap<String, Object>();
+        updates.put(String.valueOf(lastIndex + 1) + "/Created Date", date);
+        updates.put(String.valueOf(lastIndex + 1) + "/City", city);
+        updates.put(String.valueOf(lastIndex + 1) + "/Incident Address", address);
+        updates.put(String.valueOf(lastIndex + 1) + "/Unique Key", String.valueOf(lastReport.getId() + 1));
+        updates.put(String.valueOf(lastIndex + 1) + "/Borough", borough);
+        updates.put(String.valueOf(lastIndex + 1) + "/Incident Zip", String.valueOf(incidentZip));
+        updates.put(String.valueOf(lastIndex + 1) + "/Address Type", locationType);
+        updates.put(String.valueOf(lastIndex + 1) + "/Latitude", String.valueOf(latitude));
+        updates.put(String.valueOf(lastIndex + 1) + "/Longitude", String.valueOf(longitude));
+        ratDBRef.updateChildren(updates);
+        return lastReport.getId() + 1;
+    }
+
+    public RatReport getLastReport() {
+        return null;
     }
 }
 
