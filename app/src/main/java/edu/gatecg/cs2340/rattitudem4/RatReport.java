@@ -48,6 +48,9 @@ public class RatReport {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    //You must use this constructor to update the database.
+    //The no arg or the report requiring an id are available for dummy reports.
     public RatReport(String date, String locationType,
                      int incidentZip, String address, String city,
                      String borough, Double latitude, Double longitude) {
