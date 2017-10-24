@@ -264,7 +264,7 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         String borough = broughSpinner.getSelectedItem().toString();
         Double latitudeDouble = 0.0;
         Double longitudeDouble = 0.0;
-        if (zipView.getText() != null) {
+        if (!zipView.getText().toString().equals("")) {
             if (zipView.getText().toString().length() == 5) {
                 incidentZip = Integer.parseInt(zipView.getText().toString());
             }
@@ -272,25 +272,25 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
             Toast.makeText(getApplicationContext(), "Zip Field Empty", Toast.LENGTH_LONG).show();
             return;
         }
-        if (addressView.getText() != null) {
+        if (!addressView.getText().toString().equals("")) {
             address = addressView.getText().toString();
         } else {
             Toast.makeText(getApplicationContext(), "Address Field Empty", Toast.LENGTH_LONG).show();
             return;
         }
-        if (cityView.getText() != null) {
+        if (!cityView.getText().toString().equals("")) {
             city = cityView.getText().toString();
         } else {
             Toast.makeText(getApplicationContext(), "City Field Empty", Toast.LENGTH_LONG).show();
             return;
         }
-        if (latitude.getText() != null) {
+        if (!latitude.getText().toString().equals("")) {
             latitudeDouble = Double.parseDouble(latitude.getText().toString());
         } else {
             Toast.makeText(getApplicationContext(), "Latitude Field Empty", Toast.LENGTH_LONG).show();
             return;
         }
-        if (latitude.getText() != null) {
+        if (!latitude.getText().toString().equals("")) {
             longitudeDouble = Double.parseDouble(longitude.getText().toString());
         } else {
             Toast.makeText(getApplicationContext(), "Longitude Field Empty", Toast.LENGTH_LONG).show();

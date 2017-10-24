@@ -12,10 +12,17 @@ import android.view.View;
 
 public class WelcomePageActivity extends AppCompatActivity {
 
+    public static RatReportManager dbManager;
+    private static boolean loaded;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+        if (!loaded) {
+            dbManager = new RatReportManager();
+            loaded = true;
+        }
     }
 
     /** 
@@ -32,7 +39,7 @@ public class WelcomePageActivity extends AppCompatActivity {
      * @param view of the report rat button  
      */ 
     public void ratReportsButton(View view) {
-        Intent intent = new Intent(this, OptionsActivity.class);
+        Intent intent = new Intent(this, RatReportListActivity.class);
         startActivity(intent);
     }
 

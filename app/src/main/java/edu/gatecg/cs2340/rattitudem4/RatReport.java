@@ -55,7 +55,7 @@ public class RatReport {
                      int incidentZip, String address, String city,
                      String borough, Double latitude, Double longitude) {
 
-        this.id = OptionsActivity.dbManager.addNewRatReport(date, locationType, incidentZip,
+        this.id = WelcomePageActivity.dbManager.addNewRatReport(date, locationType, incidentZip,
                 address, city, borough, latitude, longitude);
         this.date = date;
         this.locationType = locationType;

@@ -27,7 +27,7 @@ public class RatReportListActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.rat_report_list);
         ArrayAdapter ad = new ArrayAdapter(RatReportListActivity.this,
                 android.R.layout.simple_expandable_list_item_1,
-                OptionsActivity.dbManager.getShortStringList().toArray());
+                WelcomePageActivity.dbManager.getShortStringList().toArray());
         list.setAdapter(ad);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapter, View v, int position, long id) {

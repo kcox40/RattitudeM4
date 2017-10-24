@@ -17,7 +17,7 @@ public class RatReportDetail extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String ratReport = bundle.getString("RatReport");
         String reportId = ratReport.substring(ratReport.lastIndexOf(" ")+1);
-        List<RatReport> ratReports = OptionsActivity.dbManager.getList();
+        List<RatReport> ratReports = WelcomePageActivity.dbManager.getList();
         for (RatReport r : ratReports) {
             if (Integer.toString(r.getId()).equals(reportId)) {
                 selectedRatReport = r;
