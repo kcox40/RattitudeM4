@@ -10,6 +10,8 @@ import java.util.List;
  */
 
 public class RatReport {
+    private static int newReports;
+    private static final int lastItemPointer = 37018532;
     private int id;
     private String date;
     private String locationType;
@@ -20,7 +22,14 @@ public class RatReport {
     private Double latitude;
     private Double longitude;
 
-    public static List<String> allowedLocationTypes = Arrays.asList(LocationType.displayLocations());
+//    public static List<String> allowedLocationTypes = Arrays.asList(LocationType.displayLocations());
+    public static List<String> allowedLocationTypes = Arrays.asList(
+            "1-2 Family Dwelling", "1-2 Family Mixed Use Building", "3+ Family Dwelling",
+        "3+ Family Mixed Use Building", "Catch Basin/Sewer", "Commercial Building",
+        "Construction Site", "Day Care/Nursery", "Government Building", "Hospital",
+        "Office Building", "Other - Please explain:", "Parking Lot/Garage", "Public Garden",
+        "Public Stairs", "School/Pre-school","Single Room Occupancy", "Summer Camp",
+        "Vacant Building", "Vacant Lot");
     public static List<String> allowedCities = Arrays.asList("New York City", "Atlanta");
     public static List<String> allowedBoroughs = Arrays.asList("Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island");
 
@@ -45,6 +54,24 @@ public class RatReport {
                      int incidentZip, String address, String city,
                      String borough, Double latitude, Double longitude) {
         this.id = id;
+        this.date = date;
+        this.locationType = locationType;
+        this.incidentZip = incidentZip;
+        this.address = address;
+        this.city = city;
+        this.borough = borough;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    //You must use this constructor to update the database.
+    //The no arg or the report requiring an id are available for dummy reports.
+    public RatReport(String date, String locationType,
+                     int incidentZip, String address, String city,
+                     String borough, Double latitude, Double longitude) {
+
+        this.id = OptionsActivity.dbManager.addNewRatReport(date, locationType, incidentZip,
+                address, city, borough, latitude, longitude);
         this.date = date;
         this.locationType = locationType;
         this.incidentZip = incidentZip;
@@ -195,5 +222,12 @@ public class RatReport {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 '}';
+    }
+    /*
+        Returns the number of new rat reports
+        @return number of new reports
+     */
+    public int getNewReports() {
+        return newReports;
     }
 }
