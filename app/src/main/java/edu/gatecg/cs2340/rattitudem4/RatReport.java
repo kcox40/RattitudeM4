@@ -1,5 +1,8 @@
 package edu.gatecg.cs2340.rattitudem4;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Russell on 10/11/2017.
  * @author team 57 
@@ -16,6 +19,11 @@ public class RatReport {
     private String borough;
     private Double latitude;
     private Double longitude;
+
+    public static List<String> allowedLocationTypes = Arrays.asList(LocationType.displayLocations());
+    public static List<String> allowedCities = Arrays.asList("New York City", "Atlanta");
+    public static List<String> allowedBoroughs = Arrays.asList("Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island");
+
     /** 
      * report of the rat info 
      */ 

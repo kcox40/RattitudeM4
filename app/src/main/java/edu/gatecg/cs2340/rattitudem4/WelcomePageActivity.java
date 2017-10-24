@@ -35,4 +35,13 @@ public class WelcomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OptionsActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * Called when someone hits the "report sighting" button
+     * @param view of the report rat button
+     */
+    public void reportRatButton(View view) {
+        Intent intent = new Intent(this, ReportSightingActivity.class);
+        startActivity(intent);
+    }
 }

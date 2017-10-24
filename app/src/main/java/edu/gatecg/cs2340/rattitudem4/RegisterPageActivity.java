@@ -5,7 +5,6 @@ package edu.gatecg.cs2340.rattitudem4;
  * v1.0
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +24,7 @@ public class RegisterPageActivity extends AppCompatActivity {
     // Instantiate widgets for the register page.
     EditText firstNameEntry,lastNameEntry,emailEntry,usernameEntry,passwordEntry,confirmPasswordEntry;
     Button btnCreateAccount,btnBack;
-    LoginDataBaseAdapter loginDataBaseAdapter;
+    LoginDataBaseAdapter dataBaseAdapter;
     RadioGroup userType;
 
 
@@ -36,8 +35,8 @@ public class RegisterPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_page);
 
         // Create instance of Database Adapter
-        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
-        loginDataBaseAdapter = loginDataBaseAdapter.open();
+        dataBaseAdapter = new LoginDataBaseAdapter(this);
+        dataBaseAdapter = dataBaseAdapter.open();
 
         // Get References of Views
         firstNameEntry = (EditText) findViewById(R.id.firstNameEntry);
@@ -79,7 +78,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                             "No user type selected", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (loginDataBaseAdapter.getSingleEntry(username) != "NOT EXIST") {
+                if (dataBaseAdapter.getSingleEntry(username) != "NOT EXIST") {
                     Toast.makeText(getApplicationContext(),
                             "Username Already Taken", Toast.LENGTH_LONG).show();
                     return;
@@ -91,7 +90,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                     return;
                 } else {
                     // Save Data in Database:
-                    loginDataBaseAdapter.insertEntry(username, password);
+                    dataBaseAdapter.insertEntry(username, password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ",
                             Toast.LENGTH_LONG).show();
                     finish();

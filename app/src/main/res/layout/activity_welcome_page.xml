@@ -28,49 +28,50 @@
             android:id="@+id/btn_logOut"
             android:layout_width="363dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_weight="1.00"
             android:onClick="goBackBtn"
             android:text="Log Out"
             tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="193dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            tools:layout_editor_absoluteY="193dp" />
 
         <Button
             android:id="@+id/btn_newReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Report Sighting"
-            android:textAlignment="center"
-            android:layout_marginTop="53dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_marginTop="53dp"
+            android:text="Report Sighting"
+            android:onClick="reportRatButton"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btn_sightingList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="ratReportsButton"
-            android:text="View Rat Sighting List"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/btn_newReport"
-            android:layout_alignParentStart="true" />
+            android:onClick="ratReportsButton"
+            android:text="View Rat Sighting List" />
 
         <Button
             android:id="@+id/btn_sightingMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Rat Sighting Map"
             android:layout_below="@+id/btn_sightingList"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:text="View Rat Sighting Map" />
 
         <Button
             android:id="@+id/btn_sightingGraph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="ratReportsButton"
-            android:text="View Rat Sighting Graphs"
+            android:layout_alignEnd="@+id/btn_logOut"
             android:layout_below="@+id/btn_sightingMap"
-            android:layout_alignEnd="@+id/btn_logOut" />
+            android:onClick="ratReportsButton"
+            android:text="View Rat Sighting Graphs" />
 
     </RelativeLayout>
 
