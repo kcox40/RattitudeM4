@@ -269,8 +269,9 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
             return;
         }
         Location location = lm.getLastKnownLocation(provider);
-
-        onLocationChanged(location);
+        if (location != null) {
+            onLocationChanged(location);
+        }
     }
     /**
     * sends you back to welcome screen
@@ -288,7 +289,7 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         //int incidentZip, String address, String city,
         //        String borough, Double latitude, Double longitude)
         DateFormat df = new SimpleDateFormat("MM/DD/yyyy HH:mm:ss a");
-        String date = df.format(myCalendar.getInstance().getTime());
+        String date = df.format(Calendar.getInstance().getTime());
         String locationType = locationSpinner.getSelectedItem().toString();
         int incidentZip = 0;
         String address = "";
