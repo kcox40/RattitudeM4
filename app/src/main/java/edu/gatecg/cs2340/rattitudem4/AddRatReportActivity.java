@@ -324,10 +324,18 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         }
         if (!addressView.getText().toString().equals("")) {
             address = addressView.getText().toString();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Address Field Empty", Toast.LENGTH_LONG).show();
+            return;
+        }
+        //TODO Cities do not contain digits
+        if (!cityView.getText().toString().equals("")) {
+            city = cityView.getText().toString();
             int i = 0;
             boolean containsDigits = false;
-            while (i < address.length() && !containsDigits) {
-                if (Character.isDigit(address.charAt(i))) {
+            while (i < city.length() && !containsDigits) {
+                if (Character.isDigit(city.charAt(i))) {
                     containsDigits = true;
                 }
                 i++;
@@ -336,13 +344,6 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
                 Toast.makeText(getApplicationContext(), "City Must Not Contain Digits", Toast.LENGTH_LONG).show();
                 return;
             }
-        } else {
-            Toast.makeText(getApplicationContext(), "Address Field Empty", Toast.LENGTH_LONG).show();
-            return;
-        }
-        //TODO Cities do not contain digits
-        if (!cityView.getText().toString().equals("")) {
-            city = cityView.getText().toString();
         } else {
             Toast.makeText(getApplicationContext(), "City Field Empty", Toast.LENGTH_LONG).show();
             return;
