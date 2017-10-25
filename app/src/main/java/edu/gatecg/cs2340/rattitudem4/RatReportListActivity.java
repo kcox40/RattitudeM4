@@ -39,10 +39,10 @@ public class RatReportListActivity extends AppCompatActivity {
             }
         });
     }
-    
-    /** 
-     * back putton from the rat report page 
-     * @param view looking at the backbutton for the rat report view 
+
+    /**
+     * back putton from the rat report page
+     * @param view looking at the backbutton for the rat report view
      */ 
 
     public void ratReportListBackButton(View view) {
