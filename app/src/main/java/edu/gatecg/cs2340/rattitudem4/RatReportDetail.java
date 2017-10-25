@@ -7,6 +7,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+* @author team 57
+* @version v1.0
+* this class displays the rat report details
+*/
+
 public class RatReportDetail extends AppCompatActivity {
 
     private RatReport selectedRatReport;

@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+/**
+* class gives different options of what should be
+* displayed depending on what button is pushed
+* @author team 57
+* @version v1.0 
+*/
+
 public class OptionsActivity extends AppCompatActivity {
     public static RatReportManager dbManager;
     private static boolean loaded;
@@ -19,18 +26,20 @@ public class OptionsActivity extends AppCompatActivity {
             loaded = true;
         }
     }
-    /*
-        Directs the app to the RatReportListActivity when pushed.
-        @param view This view
+    /**
+     *Directs the app to the RatReportListActivity when pushed.
+     * @param view This view
      */
     public void ratReportsListButton(View view) {
         Intent intent = new Intent(this, RatReportListActivity.class);
         startActivity(intent);
     }
 
-    /*
-        finishes this activity and returns to the previous one.
+    /**
+     *finishes this activity and returns to the previous one.
+     * @param view This view
      */
+
     public void optionsBackToWelcomeButton(View view) {
         finish();
     }

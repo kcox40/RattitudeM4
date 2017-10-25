@@ -48,7 +48,17 @@ public class RatReport {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-
+    /** 
+     * constructor for rat report database 
+     * @param date of the rat report 
+     * @param locationType where the rat is 
+     * @param incidentZip of the location 
+     * @param address street address of the rat 
+     * @param city of the rat sighting 
+     * @param borough of rat sighting 
+     * @param latitude of sighting 
+     * @param longitude of sighting 
+     */ 
     //You must use this constructor to update the database.
     //The no arg or the report requiring an id are available for dummy reports.
     public RatReport(String date, String locationType,
@@ -208,9 +218,9 @@ public class RatReport {
                 ", longitude='" + longitude + '\'' +
                 '}';
     }
-    /*
-        Returns the number of new rat reports
-        @return number of new reports
+    /**
+     * Returns the number of new rat reports
+     * @return number of new reports
      */
     public int getNewReports() {
         return newReports;

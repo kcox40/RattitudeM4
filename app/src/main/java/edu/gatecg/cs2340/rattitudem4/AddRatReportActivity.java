@@ -30,6 +30,12 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
 
+/** 
+ * used to view rat report updated data
+ * @author team 57 
+ * @version 1 
+ */ 
+
 public class AddRatReportActivity extends AppCompatActivity implements LocationListener {
     Calendar myCalendar;
     EditText dateView;
@@ -107,6 +113,10 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
 
         timeView.setText(stringDate);
     }
+    /**
+    * picks the date desired to be viewd
+    * @param view is the view class used display the date
+    */
 
     public void dateEditClick(View view) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, datePick, myCalendar
@@ -116,6 +126,10 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         datePicker.setMaxDate(myCalendar.getTimeInMillis());
         datePickerDialog.show();
     }
+    /**
+    * picks the time desired to be viewd
+    * @param view is the view class used display the time
+    */
     public void timeEditClick(View view) {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, timePick,
                 myCalendar.get(Calendar.HOUR), myCalendar.get(Calendar.MINUTE), true);
@@ -163,7 +177,10 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
+    /**
+    * does the user have permission to view rat location
+    * @return boolin trueor false for whether the user has permission to view location
+    */
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -235,6 +252,9 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
 
         }
     }
+    /**
+    * gets the location of the rat report
+    */
     public void getLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -247,10 +267,17 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
 
         onLocationChanged(location);
     }
+    /**
+    * sends you back to welcome screen
+    * @param view is the view class used display the welcome page
+    */
     public void optionsBackToWelcomeButton(View view) {
         finish();
     }
-
+    /**
+    * sends you to the make a Rat Report stage
+    * @param view is the view class used display creating new rat report
+    */
     public void createRatReport (View view) {
         //RatReport(String date, String locationType,
         //int incidentZip, String address, String city,
