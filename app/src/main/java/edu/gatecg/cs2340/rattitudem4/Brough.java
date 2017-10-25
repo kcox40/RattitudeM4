@@ -2,6 +2,8 @@ package edu.gatecg.cs2340.rattitudem4;
 
 /**
  * Created by kcox40 on 10/23/2017.
+ * @author team 57
+ * @version 1
  */
 
 public enum Brough {

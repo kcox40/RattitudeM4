@@ -42,7 +42,10 @@ public class WelcomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RatReportListActivity.class);
         startActivity(intent);
     }
-
+    /**
+    * Called when "new rat report" button is pushed
+    * @param view is the view class used display new rat report
+    */
     public void addNewRatReportButton(View view) {
         Intent intent = new Intent(this, AddRatReportActivity.class);
         startActivity(intent);

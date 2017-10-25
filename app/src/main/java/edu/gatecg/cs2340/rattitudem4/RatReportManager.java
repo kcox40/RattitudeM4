@@ -17,6 +17,8 @@ import java.util.Map;
 
 /**
  * Created by Carlos Priddy on 10/13/2017.
+ * @author team 57
+ * @version v1.0
  */
 
 public class RatReportManager {
@@ -27,6 +29,9 @@ public class RatReportManager {
     private int lastIndex;
     private static RatReport lastReport;
     private static FirebaseDatabase database;
+    /**
+     * manages the rat report data base
+     */
     public RatReportManager() {
         //Get Database Reference
         database = FirebaseDatabase.getInstance();
@@ -42,9 +47,9 @@ public class RatReportManager {
         //Initialize Query by attaching ValueEventListener
         queryInit();
     }
-    /*
-        Populates the Rat report database by attaching a ValueEventListener to
-        the query
+    /**
+     * Populates the Rat report database by attaching a ValueEventListener to
+     * the query
      */
     private void queryInit() {
         ratQuery.addValueEventListener(new ValueEventListener() {
@@ -113,9 +118,9 @@ public class RatReportManager {
         });
     }
 
-    /*
-        Prints full string representations of all objects in the Query
-        prints to Log.d for debug purposes
+    /**
+     * Prints full string representations of all objects in the Query
+     * prints to Log.d for debug purposes
      */
     public void printDatabase() {
         Log.d("Array Size", String.valueOf(ratReports.size()));
@@ -124,17 +129,17 @@ public class RatReportManager {
         }
     }
 
-    /*
-        Returns a list of Rat Reports
-        @return A list of Rat Reports
+    /**
+     * Returns a list of Rat Reports
+     * @return A list of Rat Reports
      */
     public List<RatReport> getList() {
         return ratReports;
     }
 
-    /*
-        Returns full string representations for all rat reports in Query
-        @return List of String representations for objects in internal database
+    /**
+     * Returns full string representations for all rat reports in Query
+     * @return List of String representations for objects in internal database
      */
     public List<String> getStringList() {
         List<String> stringList = new ArrayList<String>();
@@ -144,9 +149,9 @@ public class RatReportManager {
         return stringList;
     }
 
-    /*
-        Returns a short string representation of objects in internal DB
-        @return short string representation
+    /**
+     * Returns a short string representation of objects in internal DB
+     * @return short string representation
      */
     public List<String> getShortStringList() {
         List<String> shortList = new ArrayList<>();
@@ -157,7 +162,18 @@ public class RatReportManager {
         }
         return shortList;
     }
-
+    /** 
+     * constructor for a new rat report  
+     * @param date of the rat report 
+     * @param locationType where the rat is 
+     * @param incidentZip of the location 
+     * @param address street address of the rat 
+     * @param city of the rat sighting 
+     * @param borough of rat sighting 
+     * @param latitude of sighting 
+     * @param longitude of sighting 
+     * @return the most recent rat report
+     */ 
     public int addNewRatReport(String date, String locationType,
                                int incidentZip, String address, String city,
                                String borough, Double latitude, Double longitude) {
@@ -176,7 +192,10 @@ public class RatReportManager {
         ratDBRef.updateChildren(updates);
         return lastReport.getId() + 1;
     }
-
+    /**
+     * returns the most recent report
+     * @return null
+     */
     public RatReport getLastReport() {
         return null;
     }
