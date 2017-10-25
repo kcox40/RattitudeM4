@@ -101,13 +101,18 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         };
 
     }
-
+    /*
+        Updates the Label
+     */
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         dateView.setText(sdf.format(myCalendar.getTime()));
     }
+    /*
+        Updates Time Label
+     */
     private void updateTimeLabel() {
         String stringDate = DateFormat.getTimeInstance().format(myCalendar.getTime());
 
