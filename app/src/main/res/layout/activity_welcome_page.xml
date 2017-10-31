@@ -47,8 +47,18 @@
             android:layout_marginTop="14dp"
             android:onClick="addNewRatReportButton"
             android:text="Add New Rat Report"
-            android:layout_below="@+id/rat_reports"
+            android:layout_below="@+id/rat_report_map_button"
             android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/rat_report_map_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/rat_reports"
+            android:layout_marginTop="14dp"
+            android:onClick="ratReportMapsButton"
+            android:text="Rat Map!" />
 
         <TextView
             android:id="@+id/id"

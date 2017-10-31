@@ -288,8 +288,8 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         //RatReport(String date, String locationType,
         //int incidentZip, String address, String city,
         //        String borough, Double latitude, Double longitude)
-        DateFormat df = new SimpleDateFormat("MM/DD/yyyy HH:mm:ss a");
-        String date = df.format(Calendar.getInstance().getTime());
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+        String date = df.format(myCalendar.getTime());
         String locationType = locationSpinner.getSelectedItem().toString();
         int incidentZip = 0;
         String address = "";

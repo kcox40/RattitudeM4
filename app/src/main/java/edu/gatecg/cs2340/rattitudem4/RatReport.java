@@ -218,6 +218,11 @@ public class RatReport {
                 ", longitude='" + longitude + '\'' +
                 '}';
     }
+    public String shortToString() {
+        return "Unique Report ID: " + id
+                + " \nDate: " + date
+                + " \nZip Code: " + incidentZip;
+    }
     /**
      * Returns the number of new rat reports
      * @return number of new reports
