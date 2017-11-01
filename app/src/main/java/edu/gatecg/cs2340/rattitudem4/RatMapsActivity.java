@@ -1,16 +1,20 @@
 package edu.gatecg.cs2340.rattitudem4;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -45,51 +49,24 @@ public class RatMapsActivity extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//
-//
-//
-//                // Creating a marker
-//                MarkerOptions markerOptions = new MarkerOptions();
-//
-//                // Setting the position for the marker
-//                markerOptions.position(latLng);
-//
-//
-//
-//                // Clears the previously touched position
-//                // mMap.clear();
-//                mFacade.addReport("newly added", "Bobs Place", new Location(latLng.latitude, latLng.longitude));
-//
-//                // Setting the title for the marker.
-//                // This will be displayed on taping the marker
-//                markerOptions.title(mFacade.getLastReport().getName());
-//                markerOptions.snippet(mFacade.getLastReport().getDescription());
-//
-//                // Animating to the touched position
-//                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-//
-//                // Placing a marker on the touched position
-//                mMap.addMarker(markerOptions);
-//            }
-//        });
-        List<RatReport> reports =(List<RatReport>) WelcomePageActivity.dbManager.getList();
+        Intent intent = getIntent();
+        List<RatReport> reports =(List<RatReport>) WelcomePageActivity.dbManager.getDateRange(intent.getStringExtra("dateOne"), intent.getStringExtra("dateTwo"));
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        Log.d("maps"," " + reports.size());
 
         for (RatReport r : reports) {
+            Log.d("MapReport", r.toString());
             LatLng loc = new LatLng(r.getLatitude(), r.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title(r.getBorough()).snippet(r.shortToString()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            MarkerOptions marker = new MarkerOptions().position(loc).title(r.getBorough()).snippet(r.shortToString());
+            builder.include(marker.getPosition());
+            mMap.addMarker(marker);
         }
-
+        if (reports.size() > 1) {
+            LatLngBounds bounds = builder.build();
+            int padding = 50;
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            mMap.animateCamera(cu);
+        }
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
 

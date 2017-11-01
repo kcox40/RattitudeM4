@@ -5,14 +5,18 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class PickADateForMapActivity extends AppCompatActivity {
@@ -96,9 +100,67 @@ public class PickADateForMapActivity extends AppCompatActivity {
     public void seeMapsButton(View view) {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
         String date = df.format(myCalendar.getTime());
-        String datetwo = df.format(myCalendarTwo.getTime());
+        String dateTwo = df.format(myCalendarTwo.getTime());
+        Date startDate = null;
+        Date endDate = null;
+        Date dateOfReport = null;
+        try {
+            startDate = df.parse(date);
+            endDate = df.parse(dateTwo);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        String[] dateArray = date.split(" ");
+//        String[] dateArrayTwo = dateTwo.split(" ");
+//        String[] justDate = dateArray[0].split("/");
+//        String[] justDateTwo = dateArrayTwo[0].split("/");
+//        int month = Integer.parseInt(justDate[0]);
+//        int day = Integer.parseInt(justDate[1]);
+//        int year = Integer.parseInt(justDate[2]);
+//        int monthTwo = Integer.parseInt(justDateTwo[0]);
+//        int dayTwo = Integer.parseInt(justDateTwo[1]);
+//        int yearTwo = Integer.parseInt(justDateTwo[2]);
+//        Log.d("Date Checking", date);
+//        Log.d("Date Checking", dateArray.toString());
+//        Log.d("Date Checking", justDate.toString());
+//        Log.d("Date Checking", String.valueOf(month));
+//        Log.d("Date Checking", String.valueOf(day));
+//        Log.d("Date Checking", String.valueOf(year));
         Intent intent = new Intent(this, RatMapsActivity.class);
-        startActivity(intent);
+//        if (year > yearTwo) {
+//            Toast.makeText(getApplicationContext(), "The first date must be before the second date", Toast.LENGTH_LONG).show();
+//            return;
+//        } else if (year < yearTwo) {
+//            intent.putExtra("dateOne", date);
+//            intent.putExtra("dateTwo", dateTwo);
+//            startActivity(intent);
+//        }
+//
+//        if (month > monthTwo) {
+//            Toast.makeText(getApplicationContext(), "The first date must be before the second date", Toast.LENGTH_LONG).show();
+//            return;
+//        } else if (month < monthTwo) {
+//            intent.putExtra("dateOne", date);
+//            intent.putExtra("dateTwo", dateTwo);
+//            startActivity(intent);
+//        }
+//        if (day > dayTwo) {
+//            Toast.makeText(getApplicationContext(), "The first date must be before the second date", Toast.LENGTH_LONG).show();
+//            return;
+//        } else {
+//            intent.putExtra("dateOne", date);
+//            intent.putExtra("dateTwo", dateTwo);
+//            startActivity(intent);
+//        }
+        if (startDate.after(endDate)) {
+            Toast.makeText(getApplicationContext(), "The Start date must be before the End date", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            intent.putExtra("dateOne", date);
+            intent.putExtra("dateTwo", dateTwo);
+            startActivity(intent);
+        }
+
     }
 
     public void mapBackToWelcomeButton(View view) {

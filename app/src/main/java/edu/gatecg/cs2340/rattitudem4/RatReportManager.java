@@ -10,7 +10,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -198,6 +202,39 @@ public class RatReportManager {
      */
     public RatReport getLastReport() {
         return null;
+    }
+
+    /**
+     * Returns a list of rat reports for a specific date range EXLUSIVE
+     * @param beginning The beginning of the date range
+     * @param ending The ending of the date range
+     * @return
+     */
+    public List<RatReport> getDateRange(String beginning, String ending) {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+        Date startDate = null;
+        Date endDate = null;
+        Date dateOfReport = null;
+        try {
+            startDate = df.parse(beginning);
+            endDate = df.parse(ending);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ArrayList<RatReport> datedList = new ArrayList<RatReport>();
+
+        for (RatReport r : ratReports) {
+            try {
+                dateOfReport = df.parse(r.getDate());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (dateOfReport.after(startDate) && dateOfReport.before(endDate)) {
+                datedList.add(r);
+            }
+        }
+
+        return datedList;
     }
 }
 
