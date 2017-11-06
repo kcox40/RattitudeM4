@@ -97,6 +97,10 @@ public class PickADateForMapActivity extends AppCompatActivity {
         dateViewTwo.setText(sdf.format(myCalendarTwo.getTime()));
     }
 
+    /**
+     * Shows the maps activity
+     * @param view
+     */
     public void seeMapsButton(View view) {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
         String date = df.format(myCalendar.getTime());

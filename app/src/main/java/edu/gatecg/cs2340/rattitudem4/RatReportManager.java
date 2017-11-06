@@ -45,7 +45,7 @@ public class RatReportManager {
         ratReports = new ArrayList<RatReport>();
 
         //Set Query objects
-        ratQuery = ratDBRef.orderByKey().limitToLast(20);
+        ratQuery = ratDBRef.orderByKey().limitToLast(100);
         lastItem = ratDBRef.orderByKey().limitToLast(1);
 
         //Initialize Query by attaching ValueEventListener
