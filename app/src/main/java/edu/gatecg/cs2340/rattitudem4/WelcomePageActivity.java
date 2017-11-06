@@ -59,4 +59,13 @@ public class WelcomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PickADateForMapActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * Called when "rat chart" button is pressed
+     * @param view is the view class used to display chart activity
+     */
+    public void ratReportChartsButton(View view) {
+        Intent intent = new Intent(this, ChartDateActivity.class);
+        startActivity(intent);
+    }
 }
