@@ -92,6 +92,11 @@ public class RatChartActivity extends AppCompatActivity {
         lineChart.getDescription().setText("Rat Reports Per Month");
     }
 
+    /**
+     * Convert the set to entries in the chart
+     * @param data  the map of data to convert to entries
+     * @return returns list of entries to add to chart
+     */
     private List<Entry> convertDataSetToEntry(Map<Integer, Integer> data) {
         List<Entry> entries = new ArrayList<>();
 
@@ -108,6 +113,9 @@ public class RatChartActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Compare data
+     */
     public class Data implements Comparable {
         public int x;
         public int y;
@@ -125,6 +133,10 @@ public class RatChartActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Button to return to Welcome Activity
+     * @param view
+     */
     public void back(View view) {
         finish();
     }

@@ -71,7 +71,7 @@ public class ChartDateActivity extends AppCompatActivity {
         SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
         long milliseconds = 0;
         try {
-            Date d = f.parse("31-December-2016");
+            Date d = f.parse("01-January-2017");
             milliseconds = d.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -104,6 +104,10 @@ public class ChartDateActivity extends AppCompatActivity {
         dateViewTwo.setText(sdf.format(myCalendarTwo.getTime()));
     }
 
+    /**
+     * Button to change view to the chart
+     * @param view
+     */
     public void seeChartButton(View view) {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
         String date = df.format(myCalendar.getTime());
@@ -131,6 +135,10 @@ public class ChartDateActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Button to return to welcome Activity
+     * @param view
+     */
     public void mapBackToWelcomeButton(View view) {
         finish();
     }

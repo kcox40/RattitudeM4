@@ -136,7 +136,6 @@
             android:layout_above="@+id/backButton"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
-            android:onClick="onCreateAccountClicked"
             android:text="Create Account" />
 
         <Button
