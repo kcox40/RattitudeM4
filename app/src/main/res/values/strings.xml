@@ -13,12 +13,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="empty_firstName">The First Name field must not be empty</string>
-    <string name="empty_lastName">The Last Name field must not be empty</string>
-    <string name="empty_email">The Email field must not be empty</string>
-    <string name="empty_username">The Username field must not be empty</string>
-    <string name="empty_password">The Password field must not be empty</string>
-    <string name="taken_username">That Username is already taken</string>
     <string name="title_activity_rat_report">RatReport</string>
     <string name="title_activity_rat_maps">Map</string>
 </resources>

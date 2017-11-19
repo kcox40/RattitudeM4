@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:790163566739:android:1446324f8bb4062b",
         "android_client_info": {
-          "package_name": "edu.gatecg.cs2340.rattitudem4"
+          "package_name": "edu.gatech.cs2340.rattitudem4"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "790163566739-33upq05ldp1kakr6haf9gmnimjp6otgu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "edu.gatecg.cs2340.rattitudem4",
+            "package_name": "edu.gatech.cs2340.rattitudem4",
             "certificate_hash": "d7ddc0656e7c2edc49b6b2841ec7f1d25723f843"
           }
         },

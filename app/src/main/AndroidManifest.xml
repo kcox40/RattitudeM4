@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.gatecg.cs2340.rattitudem4">
+    package="edu.gatech.cs2340.rattitudem4">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -16,9 +16,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".MainLoginActivity"
+            android:name="edu.gatech.cs2340.rattitudem4.MainLoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,16 +27,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterPageActivity" />
-        <activity android:name=".WelcomePageActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.RegisterPageActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.WelcomePageActivity" />
         <activity
-            android:name=".RatReportListActivity"
+            android:name="edu.gatech.cs2340.rattitudem4.RatReportListActivity"
             android:label="@string/title_activity_rat_report"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OptionsActivity" />
-        <activity android:name=".RatReportDetail" />
-        <activity android:name=".AddRatReportActivity" />
-        <activity android:name=".PickADateForMapActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.OptionsActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.RatReportDetail" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.AddRatReportActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.PickADateForMapActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.ChartDateActivity" />
+        <activity android:name="edu.gatech.cs2340.rattitudem4.RatChartActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,7 +52,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".RatMapsActivity"
+            android:name="edu.gatech.cs2340.rattitudem4.RatMapsActivity"
             android:label="@string/title_activity_rat_maps"></activity>
     </application>
 
