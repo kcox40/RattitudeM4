@@ -24,7 +24,6 @@ public class RegisterPageActivity extends AppCompatActivity {
     private EditText usernameEntry;
     private EditText passwordEntry;
     private EditText confirmPasswordEntry;
-    private Button btnCreateAccount;
     private LoginDataBaseAdapter loginDataBaseAdapter;
     private RadioGroup userType;
 
@@ -49,7 +48,7 @@ public class RegisterPageActivity extends AppCompatActivity {
         userType = findViewById(R.id.userTypeRadioGroup);
 
 
-        btnCreateAccount = findViewById(R.id.createAccountButton);
+        Button btnCreateAccount = findViewById(R.id.createAccountButton);
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +73,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                             "No user type selected", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (loginDataBaseAdapter.getSingleEntry(username) != "NOT EXIST") {
+                if (!"NOT EXIST".equals(loginDataBaseAdapter.getSingleEntry(username))) {
                     Toast.makeText(getApplicationContext(),
                             "Username Already Taken", Toast.LENGTH_LONG).show();
                     return;

@@ -56,7 +56,7 @@ public class RatMapsActivity extends FragmentActivity implements OnMapReadyCallb
 
         for (RatReport r : reports) {
             Log.d("MapReport", r.toString());
-            LatLng loc = null;
+            LatLng loc;
             if ((r.getLatitude() != null) && (r.getLongitude() != null)) {
                 loc = new LatLng(r.getLatitude(), r.getLongitude());
                 MarkerOptions marker = new MarkerOptions().position(loc).title(r.getBorough()).

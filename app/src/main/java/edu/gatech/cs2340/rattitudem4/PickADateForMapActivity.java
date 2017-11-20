@@ -152,7 +152,7 @@ public class PickADateForMapActivity extends AppCompatActivity {
 //            intent.putExtra("dateTwo", dateTwo);
 //            startActivity(intent);
 //        }
-        if (startDate != null && endDate != null) {
+        if ((startDate != null) && (endDate != null)) {
             if (startDate.after(endDate)) {
                 Toast.makeText(getApplicationContext(),
                         "The Start date must be before the End date", Toast.LENGTH_LONG).show();

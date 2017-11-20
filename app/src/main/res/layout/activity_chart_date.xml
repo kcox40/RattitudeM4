@@ -28,6 +28,7 @@
 
 
             <EditText
+                android:labelFor="@+id/instructions_map"
                 android:id="@+id/instructions_map"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:labelFor="@+id/date_text_map"
                 android:id="@+id/date_text_map"
                 android:layout_width="186dp"
                 android:layout_height="wrap_content"
@@ -51,6 +53,7 @@
                 android:text="Date" />
 
             <EditText
+                android:labelFor="@+id/date_text_map_two"
                 android:id="@+id/date_text_map_two"
                 android:layout_width="186dp"
                 android:layout_height="wrap_content"

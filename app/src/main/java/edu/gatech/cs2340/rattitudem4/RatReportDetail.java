@@ -26,7 +26,7 @@ public class RatReportDetail extends AppCompatActivity {
             ratReport = bundle.getString("RatReport");
         }
         String reportId = "";
-        if (!"".equals(ratReport)) {
+        if (!"".equals(ratReport) && (ratReport != null)) {
             reportId = ratReport.substring(ratReport.lastIndexOf(" ")+1);
         }
         List<RatReport> ratReports = WelcomePageActivity.dbManager.getList();

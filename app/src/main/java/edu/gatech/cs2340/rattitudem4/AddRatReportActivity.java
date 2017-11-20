@@ -49,9 +49,9 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
     private DatePickerDialog.OnDateSetListener datePick;
     private TimePickerDialog.OnTimeSetListener timePick;
     private LocationManager lm;
-    Location location;
-    double longitudeNum;
-    double latitudeNum;
+    //Location location;
+    //double longitudeNum;
+    //double latitudeNum;
     private String provider;
 
     private final int  UPDATE_MIN_TIME = 400;
@@ -144,8 +144,10 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
 
     @Override
     public void onLocationChanged(Location location) {
-        latitude.setText(String.format(Double.toString(location.getLatitude())));
-        longitude.setText(String.format(Double.toString(location.getLongitude())));
+        String lat = Double.toString(location.getLatitude());
+        String log = Double.toString(location.getLongitude());
+        latitude.setText(lat);
+        longitude.setText(log);
     }
 
     @Override
@@ -294,12 +296,12 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a", Locale.US);
         String date = df.format(myCalendar.getTime());
         String locationType = locationSpinner.getSelectedItem().toString();
-        int incidentZip = 0;
-        String address = "";
-        String city = "";
+        int incidentZip;
+        String address;
+        String city;
         String borough = boroughSpinner.getSelectedItem().toString();
-        Double latitudeDouble = 0.0;
-        Double longitudeDouble = 0.0;
+        Double latitudeDouble;
+        Double longitudeDouble;
         String zip = zipView.getText().toString();
         if (zipView.getText() != null) {
             if (zip.length() == 5) {

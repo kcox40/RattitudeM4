@@ -242,8 +242,10 @@ public class RatReportManager {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (dateOfReport.after(startDate) && dateOfReport.before(endDate)) {
-                datedList.add(r);
+            if ((dateOfReport != null) && (startDate != null)) {
+                if (dateOfReport.after(startDate) && dateOfReport.before(endDate)) {
+                    datedList.add(r);
+                }
             }
         }
 

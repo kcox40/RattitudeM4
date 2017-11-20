@@ -28,6 +28,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:labelFor="@+id/DateText"
                 android:id="@+id/DateText"
                 android:layout_width="186dp"
                 android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
                 android:text="Date" />
 
             <EditText
+                android:labelFor="@+id/timeText"
                 android:id="@+id/timeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

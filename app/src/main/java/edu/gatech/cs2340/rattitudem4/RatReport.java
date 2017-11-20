@@ -226,10 +226,10 @@ public class RatReport {
                 + " \nDate: " + date
                 + " \nZip Code: " + incidentZip;
     }
-    /**
-     * Returns the number of new rat reports
-     * @return number of new reports
-     */
+//    /**
+//     * Returns the number of new rat reports
+//     * @return number of new reports
+//     */
 //    public int getNewReports() {
 //        return newReports;
 //    }
