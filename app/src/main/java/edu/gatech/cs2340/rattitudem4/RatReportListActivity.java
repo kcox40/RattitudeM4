@@ -16,12 +16,11 @@ import android.widget.AdapterView;
  */ 
 
 public class RatReportListActivity extends AppCompatActivity {
-    private ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_report);
-        list = findViewById(R.id.rat_report_list);
+        ListView list = findViewById(R.id.rat_report_list);
         ListAdapter ad = new ArrayAdapter<>(RatReportListActivity.this,
                 android.R.layout.simple_expandable_list_item_1,
                 WelcomePageActivity.dbManager.getShortStringList().toArray());

@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.rattitudem4;
 
+
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -7,6 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.List;
+
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,17 +22,15 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.List;
-
 /**
- * displays the ratReports on a map
+ * Creates a Google MapView of rat reports between certain dates
  */
-public class RatMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rat_maps);
+        setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -47,6 +49,13 @@ public class RatMapsActivity extends FragmentActivity implements OnMapReadyCallb
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        GoogleMap mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
         Intent intent = getIntent();
         List<RatReport> reports = WelcomePageActivity.dbManager
                 .getDateRange(intent.getStringExtra("dateOne"),
@@ -59,19 +68,19 @@ public class RatMapsActivity extends FragmentActivity implements OnMapReadyCallb
             LatLng loc;
             if ((r.getLatitude() != null) && (r.getLongitude() != null)) {
                 loc = new LatLng(r.getLatitude(), r.getLongitude());
-                MarkerOptions marker = new MarkerOptions().position(loc).title(r.getBorough()).
-                        snippet(r.shortToString());
+                MarkerOptions marker = new MarkerOptions().position(loc)
+                        .title(r.getBorough()).snippet(r.shortToString());
                 builder.include(marker.getPosition());
-                googleMap.addMarker(marker);
+                mMap.addMarker(marker);
             }
         }
         if (reports.size() > 1) {
             LatLngBounds bounds = builder.build();
-            final int padding = 50;
+            int padding = 50;
             CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-            googleMap.animateCamera(cu);
+            mMap.animateCamera(cu);
         }
-        googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {

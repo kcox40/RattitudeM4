@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RattitudeM4.iml" filepath="$PROJECT_DIR$/RattitudeM4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FuckingHell.iml" filepath="$PROJECT_DIR$/.idea/FuckingHell.iml" />
+      <module fileurl="file://C:\Users\kcox8\Desktop\FuckingHell\RattitudeM4.iml" filepath="C:\Users\kcox8\Desktop\FuckingHell\RattitudeM4.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

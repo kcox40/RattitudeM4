@@ -10,6 +10,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -232,7 +233,7 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -364,7 +365,12 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         finish();
     }
 
-    public int checkZip(String zip) {
+    /**
+     * Checks if a valid zip string was entered
+     * @param zip string zip input from user
+     * @return int representation of zip or -1 if not a valid zip
+     */
+    private int checkZip(String zip) {
         if (zip.length() == 5) {
             boolean containsChar = false;
             int i = 0;

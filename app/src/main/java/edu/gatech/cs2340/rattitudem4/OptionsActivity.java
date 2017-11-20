@@ -13,7 +13,6 @@ import android.view.View;
 */
 
 public class OptionsActivity extends AppCompatActivity {
-    private static RatReportManager dbManager;
     private static boolean loaded;
 
     @Override
@@ -21,7 +20,7 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
         if (!loaded) {
-            dbManager = new RatReportManager();
+            RatReportManager dbManager = new RatReportManager();
             loaded = true;
         }
     }

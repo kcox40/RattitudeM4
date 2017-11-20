@@ -44,9 +44,6 @@ import static android.Manifest.permission.READ_CONTACTS;
  */ 
 public class MainLoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    // Instance Variables
-    //private Button btnSignIn;
-    private Button btnRegister;
     private LoginDataBaseAdapter loginDataBaseAdapter;
 
 
@@ -83,7 +80,7 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
 
         // Button References
         //btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
-        btnRegister = findViewById(R.id.register_button);
+        Button btnRegister = findViewById(R.id.register_button);
 
         // Register Button OnClick
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +118,7 @@ public class MainLoginActivity extends AppCompatActivity implements LoaderCallba
      * Called when someone hits the "register now" button
      * @param view displays the register button 
      */
-    private void registerBtn(View view) {
+    public void registerBtn(View view) {
         Intent intent = new Intent(this, RegisterPageActivity.class);
         startActivity(intent);
     }

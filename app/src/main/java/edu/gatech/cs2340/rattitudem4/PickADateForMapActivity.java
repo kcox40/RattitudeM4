@@ -129,7 +129,7 @@ public class PickADateForMapActivity extends AppCompatActivity {
 //        Log.d("Date Checking", String.valueOf(month));
 //        Log.d("Date Checking", String.valueOf(day));
 //        Log.d("Date Checking", String.valueOf(year));
-        Intent intent = new Intent(this, RatMapsActivity.class);
+        Intent intent = new Intent(this, MapsActivity2.class);
 //        if (year > yearTwo) {
 //            return;
 //        } else if (year < yearTwo) {
