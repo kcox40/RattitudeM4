@@ -285,6 +285,9 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
     public void optionsBackToWelcomeButton(View view) {
         finish();
     }
+
+
+
     /**
     * sends you to the make a Rat Report stage
     * @param view is the view class used display creating new rat report
@@ -296,34 +299,16 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a", Locale.US);
         String date = df.format(myCalendar.getTime());
         String locationType = locationSpinner.getSelectedItem().toString();
-        int incidentZip;
         String address;
         String city;
+        int incidentZip;
         String borough = boroughSpinner.getSelectedItem().toString();
         Double latitudeDouble;
         Double longitudeDouble;
-        String zip = zipView.getText().toString();
-        if (zipView.getText() != null) {
-            if (zip.length() == 5) {
-                boolean containsChar = false;
-                int i = 0;
-                while ((i < zip.length()) && (!containsChar)) {
-                    if (Character.isLetter(zip.charAt(i))) {
-                        containsChar = true;
-                    }
-                    i++;
-                }
-                if (!containsChar) {
-                    incidentZip = Integer.parseInt(zipView.getText().toString());
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Zip Must Contain Digits Only", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Zip must be 5 digits long", Toast.LENGTH_LONG).show();
+        if (!"".equals(zipView.getText().toString())) {
+            String zip = zipView.getText().toString();
+            incidentZip = checkZip(zip);
+            if (incidentZip == -1) {
                 return;
             }
         } else {
@@ -377,6 +362,29 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         new RatReport(date, locationType, incidentZip,address, city, borough, latitudeDouble,
                 longitudeDouble);
         finish();
+    }
+
+    public int checkZip(String zip) {
+        if (zip.length() == 5) {
+            boolean containsChar = false;
+            int i = 0;
+            while ((i < zip.length()) && (!containsChar)) {
+                if (Character.isLetter(zip.charAt(i))) {
+                    containsChar = true;
+                }
+                i++;
+            }
+            if (!containsChar) {
+                return Integer.parseInt(zip);
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Zip Must Contain Digits Only", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Zip must be 5 digits long", Toast.LENGTH_LONG).show();
+        }
+        return -1;
     }
 
 }
