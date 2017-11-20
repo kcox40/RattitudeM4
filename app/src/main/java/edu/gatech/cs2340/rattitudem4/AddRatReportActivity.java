@@ -307,15 +307,12 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
         String borough = boroughSpinner.getSelectedItem().toString();
         Double latitudeDouble;
         Double longitudeDouble;
-        if (!"".equals(zipView.getText().toString())) {
-            String zip = zipView.getText().toString();
-            incidentZip = checkZip(zip);
-            if (incidentZip == -1) {
-                return;
-            }
-        } else {
-            Toast.makeText(getApplicationContext(),
-                    "Zip Field Empty", Toast.LENGTH_LONG).show();
+        String zip = zipView.getText().toString();
+        String verifyZip = RatReportEntryVerify.checkZip(zip);
+        if (zip.equals(verifyZip)){
+            incidentZip = Integer.parseInt(verifyZip);
+        } else{
+            Toast.makeText(getApplicationContext(), verifyZip, Toast.LENGTH_LONG).show();
             return;
         }
         if (!"".equals(addressView.getText().toString())) {
@@ -365,33 +362,4 @@ public class AddRatReportActivity extends AppCompatActivity implements LocationL
                 longitudeDouble);
         finish();
     }
-
-    /**
-     * Checks if a valid zip string was entered
-     * @param zip string zip input from user
-     * @return int representation of zip or -1 if not a valid zip
-     */
-    private int checkZip(String zip) {
-        if (zip.length() == 5) {
-            boolean containsChar = false;
-            int i = 0;
-            while ((i < zip.length()) && (!containsChar)) {
-                if (Character.isLetter(zip.charAt(i))) {
-                    containsChar = true;
-                }
-                i++;
-            }
-            if (!containsChar) {
-                return Integer.parseInt(zip);
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Zip Must Contain Digits Only", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(getApplicationContext(),
-                    "Zip must be 5 digits long", Toast.LENGTH_LONG).show();
-        }
-        return -1;
-    }
-
 }
