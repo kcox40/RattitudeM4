@@ -47,7 +47,7 @@ public class RatChartActivity extends AppCompatActivity {
             monthRange.add(i - 1);
         }
 
-        List<RatReport> reports =(List<RatReport>) WelcomePageActivity.dbManager.getDateRange(startDateString, endDateString);
+        List<RatReport> reports = WelcomePageActivity.dbManager.getDateRange(startDateString, endDateString);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
         Date startDate = null;
         Date endDate = null;

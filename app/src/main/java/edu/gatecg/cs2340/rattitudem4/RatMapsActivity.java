@@ -50,7 +50,7 @@ public class RatMapsActivity extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         Intent intent = getIntent();
-        List<RatReport> reports =(List<RatReport>) WelcomePageActivity.dbManager.getDateRange(intent.getStringExtra("dateOne"), intent.getStringExtra("dateTwo"));
+        List<RatReport> reports = WelcomePageActivity.dbManager.getDateRange(intent.getStringExtra("dateOne"), intent.getStringExtra("dateTwo"));
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         Log.d("maps"," " + reports.size());
 

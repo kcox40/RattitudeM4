@@ -13,37 +13,36 @@ import android.view.View;
 public class WelcomePageActivity extends AppCompatActivity {
 
     public static RatReportManager dbManager;
-    private static boolean loaded;
+    private static boolean dataBaseLoaded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
-        if (!loaded) {
+        if (!dataBaseLoaded) {
             dbManager = new RatReportManager();
-            loaded = true;
+            dataBaseLoaded = true;
         }
     }
 
     /** 
-     * Called when someone hits the "log out" button 
-     * @param view of the goBack button  
+     * Called when "log out" button is pressed
+     * @param view is the view class used to display log out button
      */
     public void goBackBtn(View view) {
-        // Do something in response to button
         Intent intent = new Intent(this, MainLoginActivity.class);
         startActivity(intent);
     }
     /** 
-     * Called when someone hits the "report rat" button 
-     * @param view of the report rat button  
+     * Called when "report rat" button is pressed
+     * @param view is the view class used to display report rat button
      */ 
     public void ratReportsButton(View view) {
         Intent intent = new Intent(this, RatReportListActivity.class);
         startActivity(intent);
     }
     /**
-    * Called when "new rat report" button is pushed
+    * Called when "new rat report" button is pressed
     * @param view is the view class used display new rat report
     */
     public void addNewRatReportButton(View view) {

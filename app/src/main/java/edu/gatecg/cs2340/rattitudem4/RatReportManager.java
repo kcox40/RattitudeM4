@@ -66,15 +66,15 @@ public class RatReportManager {
                     report.setId(Integer.parseInt((String) reportSnapshot.child("Unique Key").getValue()));
                     report.setBorough((String) reportSnapshot.child("Borough").getValue());
                     report.setDate((String) reportSnapshot.child("Created Date").getValue());
-                    if (!((String) reportSnapshot.child("Incident Zip").getValue()).equals("")) {
+                    if (!reportSnapshot.child("Incident Zip").getValue().equals("")) {
                         report.setIncidentZip(Integer.parseInt((String) reportSnapshot.child("Incident Zip").getValue()));
                     }
                     report.setLocationType((String) reportSnapshot.child("Address Type").getValue());
-                    if (!((String) reportSnapshot.child("Latitude").getValue()).equals("")) {
+                    if (!reportSnapshot.child("Latitude").getValue().equals("")) {
                         report.setLatitude(Double.parseDouble((String) reportSnapshot.child("Latitude").getValue()));
                     }
 
-                    if (!((String) reportSnapshot.child("Longitude").getValue()).equals("")) {
+                    if (!reportSnapshot.child("Longitude").getValue().equals("")) {
                         report.setLongitude(Double.parseDouble((String) reportSnapshot.child("Longitude").getValue()));
                     }
 
@@ -97,15 +97,15 @@ public class RatReportManager {
                     report.setId(Integer.parseInt((String) reportSnapshot.child("Unique Key").getValue()));
                     report.setBorough((String) reportSnapshot.child("Borough").getValue());
                     report.setDate((String) reportSnapshot.child("Created Date").getValue());
-                    if (!((String) reportSnapshot.child("Incident Zip").getValue()).equals("")) {
+                    if (!reportSnapshot.child("Incident Zip").getValue().equals("")) {
                         report.setIncidentZip(Integer.parseInt((String) reportSnapshot.child("Incident Zip").getValue()));
                     }
                     report.setLocationType((String) reportSnapshot.child("Address Type").getValue());
-                    if (!((String) reportSnapshot.child("Latitude").getValue()).equals("")) {
+                    if (!reportSnapshot.child("Latitude").getValue().equals("")) {
                         report.setLatitude(Double.parseDouble((String) reportSnapshot.child("Latitude").getValue()));
                     }
 
-                    if (!((String) reportSnapshot.child("Longitude").getValue()).equals("")) {
+                    if (!reportSnapshot.child("Longitude").getValue().equals("")) {
                         report.setLongitude(Double.parseDouble((String) reportSnapshot.child("Longitude").getValue()));
                     }
 
